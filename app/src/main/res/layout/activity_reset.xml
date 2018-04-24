@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.witkey.campuswitkey.views.ResetActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/reset_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/holo_blue_light">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="重置密码"
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="6dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/reset_email_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:text="邮箱    "
+                android:theme="@style/TextViewTheme" />
+
+
+            <EditText
+                android:id="@+id/reset_email_et"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_toRightOf="@+id/reset_email_tv"
+                android:hint="请输入您的邮箱账号"
+                android:inputType="textEmailAddress"
+                android:theme="@style/EditViewTheme" />
+
+            <TextView
+                android:id="@+id/reset_pwd_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/reset_email_tv"
+                android:text="密码    "
+                android:theme="@style/TextViewTheme" />
+
+            <EditText
+                android:id="@+id/reset_pwd_et"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/reset_email_tv"
+                android:layout_toRightOf="@id/reset_pwd_tv"
+                android:hint="请输入密码"
+                android:theme="@style/EditViewTheme" />
+            <TextView
+                android:id="@+id/reset_pwd_isvb_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:layout_below="@id/reset_email_tv"
+                android:layout_alignRight="@id/reset_pwd_et"
+                android:drawableLeft="@drawable/ic_visibility_off"/>
+
+            <TextView
+                android:id="@+id/reset_checkcode_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@id/reset_pwd_tv"
+                android:text="验证码"
+                android:theme="@style/TextViewTheme" />
+
+            <EditText
+                android:id="@+id/reset_checkcode_et"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@+id/reset_pwd_tv"
+                android:layout_toRightOf="@id/reset_checkcode_tv"
+                android:hint="请输入验证码"
+                android:inputType="number"
+                android:theme="@style/EditViewTheme" />
+
+            <TextView
+                android:id="@+id/reset_get_checkcode_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_alignRight="@id/reset_checkcode_et"
+                android:layout_below="@id/reset_pwd_tv"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="@android:color/holo_blue_dark"/>
+            <Button
+                android:theme="@style/ButtonTheme"
+                android:id="@+id/reset_submit_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/reset_checkcode_tv"
+                android:layout_marginTop="50dp"
+                android:text="提交"
+                />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

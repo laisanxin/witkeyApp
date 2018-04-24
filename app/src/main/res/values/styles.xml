@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+       <item name="android:statusBarColor">@android:color/holo_blue_light</item>
+
+    </style>
+    <style name="ButtonTheme">
+        <item name="android:backgroundTint">@android:color/holo_blue_dark</item>
+        <item name="android:textColor">@android:color/white</item>
+
+
+    </style>
+    <style name="EditViewTheme">
+        <item name="android:textColorHint">@android:color/darker_gray</item>
+        <item name="android:textSize">16dp</item>
+
+    </style>
+    <style name="TextViewTheme">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">16dp</item>
+
+    </style>
+
+
+</resources>
