@@ -7,4 +7,5 @@ package com.witkey.campuswitkey.utils;
 public class Url {
     public static final String Base_URL = "http://10.0.2.2:8080/witkeyServer/";
     /*public static final String Base_URL = "http://tc.lsxweb.top/witkey/";*/
+    /*public static final String Base_URL = "http://tc.lsxweb.top/witkey/";*/
 }
