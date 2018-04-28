@@ -22,9 +22,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableTop="@drawable/ic_find_tasks_24dp"
+            android:drawableTop="@drawable/ic_find_tasks_selected"
             android:gravity="center"
-            android:textColor="@color/darker_gray"
+            android:textColor="@color/holo_bule_dark"
             android:text="问题大厅"/>
         <TextView
             android:id="@+id/find_witkeys"
@@ -32,6 +32,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:drawableTop="@drawable/ic_find_witkeys_unselected"
+            android:textColor="@color/darker_gray"
             android:text="发现"/>
         <TextView
             android:id="@+id/post_tasks"
@@ -39,6 +41,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/darker_gray"
             android:text="发布问题"/>
         <TextView
             android:id="@+id/personal"
@@ -46,6 +49,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/darker_gray"
             android:text="我的"/>
 
 
