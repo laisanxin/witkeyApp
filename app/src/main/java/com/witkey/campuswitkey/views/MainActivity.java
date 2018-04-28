@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.witkey.campuswitkey.R;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         fragmentManager = getSupportFragmentManager();
         setTabSelection(0);
         find_tasks_tv.setOnClickListener(this);
@@ -70,8 +72,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hideFragments(transaction);
         switch(index){
             case 0:
-                find_tasks_tv.setCompoundDrawablesWithIntrinsicBounds(null, null,
-                        getDrawable(R.drawable.ic_find_tasks_selected), null);
+                find_tasks_tv.setCompoundDrawablesWithIntrinsicBounds(null, getDrawable(R.drawable.ic_find_tasks_selected),
+                       null, null);
                 find_tasks_tv.setTextColor(getResources().getColor(R.color.holo_bule_dark));
                 if (findTasksFragment == null) {
 
@@ -83,8 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 1:
-                find_witkeys_tv.setCompoundDrawablesWithIntrinsicBounds(null, null,
-                        getDrawable(R.drawable.ic_find_witkeys_selected), null);
+                find_witkeys_tv.setCompoundDrawablesWithIntrinsicBounds(null,
+                        getDrawable(R.drawable.ic_find_witkeys_selected),null, null);
                 find_witkeys_tv.setTextColor(getResources().getColor(R.color.holo_bule_dark));
                 if (findWitkeysFragment == null) {
 
@@ -96,8 +98,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 2:
-                post_tasks_tv.setCompoundDrawablesWithIntrinsicBounds(null, null,
-                        getDrawable(R.drawable.ic_post_tasks_selected), null);
+                post_tasks_tv.setCompoundDrawablesWithIntrinsicBounds(null,
+                        getDrawable(R.drawable.ic_post_tasks_selected), null, null);
                 post_tasks_tv.setTextColor(getResources().getColor(R.color.holo_bule_dark));
                 if ( postTasksFragment== null) {
 
@@ -109,8 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 3:
-                personal_tv.setCompoundDrawablesWithIntrinsicBounds(null, null,
-                        getDrawable(R.drawable.ic_personal_selected), null);
+                personal_tv.setCompoundDrawablesWithIntrinsicBounds(null,
+                        getDrawable(R.drawable.ic_personal_selected), null, null);
                 personal_tv.setTextColor(getResources().getColor(R.color.holo_bule_dark));
                 if ( personalFragment== null) {
 
@@ -130,20 +132,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //清除掉选中的状态
     private void clearSelection() {
         find_tasks_tv.setTextColor(getResources().getColor(R.color.darker_gray));
-        find_tasks_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,
-                getDrawable(R.drawable.ic_find_tasks_unselected),null);
+        find_tasks_tv.setCompoundDrawablesWithIntrinsicBounds(null,
+                getDrawable(R.drawable.ic_find_tasks_unselected), null, null);
 
         find_witkeys_tv.setTextColor(getResources().getColor(R.color.darker_gray));
-        find_witkeys_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,
-                getDrawable(R.drawable.ic_find_witkeys_unselected),null);
+        find_witkeys_tv.setCompoundDrawablesWithIntrinsicBounds(null,
+                getDrawable(R.drawable.ic_find_witkeys_unselected), null, null);
 
         post_tasks_tv.setTextColor(getResources().getColor(R.color.darker_gray));
-        post_tasks_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,
-                getDrawable(R.drawable.ic_post_tasks_unselected),null);
+        post_tasks_tv.setCompoundDrawablesWithIntrinsicBounds(null,
+                getDrawable(R.drawable.ic_post_tasks_unselected),null, null);
 
         personal_tv.setTextColor(getResources().getColor(R.color.darker_gray));
-        personal_tv.setCompoundDrawablesWithIntrinsicBounds(null,null,
-                getDrawable(R.drawable.ic_post_tasks_unselected),null);
+        personal_tv.setCompoundDrawablesWithIntrinsicBounds(null,
+                getDrawable(R.drawable.ic_personal_unselected), null, null);
 
 
 
