@@ -17,38 +17,48 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">
+
         <TextView
-            android:id="@+id/find_task"
+            android:id="@+id/find_tasks_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableTop="@drawable/ic_find_tasks_selected"
             android:gravity="center"
-            android:textColor="@color/holo_bule_dark"
-            android:text="问题大厅"/>
+            android:paddingTop="5dp"
+            android:text="问题大厅"
+            android:textColor="@color/holo_bule_dark" />
+
         <TextView
-            android:id="@+id/find_witkeys"
+            android:id="@+id/find_witkeys_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:drawableTop="@drawable/ic_find_witkeys_unselected"
-            android:textColor="@color/darker_gray"
-            android:text="发现"/>
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:text="发现"
+            android:textColor="@color/darker_gray" />
+
         <TextView
-            android:id="@+id/post_tasks"
+            android:id="@+id/post_tasks_tv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_post_tasks_unselected"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:text="发布问题"
+            android:textColor="@color/darker_gray" />
+
+        <TextView
+            android:id="@+id/personal_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:textColor="@color/darker_gray"
-            android:text="发布问题"/>
-        <TextView
-            android:id="@+id/personal"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
+            android:paddingTop="5dp"
+            android:drawableTop="@drawable/ic_personal_unselected"
             android:textColor="@color/darker_gray"
             android:text="我的"/>
 
