@@ -22,8 +22,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableTop="@drawable/ic_visibility_off"
+            android:drawableTop="@drawable/ic_find_tasks_24dp"
             android:gravity="center"
+            android:textColor="@color/darker_gray"
             android:text="问题大厅"/>
         <TextView
             android:id="@+id/find_witkeys"
