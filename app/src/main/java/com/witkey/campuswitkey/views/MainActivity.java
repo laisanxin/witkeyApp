@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
         setTabSelection(0);
+        find_tasks_tv.setOnClickListener(this);
+        find_witkeys_tv.setOnClickListener(this);
+        post_tasks_tv.setOnClickListener(this);
+        personal_tv.setOnClickListener(this);
 
     }
 
