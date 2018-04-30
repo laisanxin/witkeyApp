@@ -5,5 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="holo_bule_dark">@android:color/holo_blue_dark</color>
     <color name="darker_gray">@android:color/darker_gray</color>
+    <color name="holo_bule_light"> @android:color/holo_blue_light</color>
+    <color name="white">#ffffff</color>
+    <color name="system_grey">#F0F0F0</color>
+
+
 
 </resources>
