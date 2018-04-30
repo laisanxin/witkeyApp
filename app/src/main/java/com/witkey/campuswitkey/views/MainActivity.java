@@ -1,6 +1,8 @@
 package com.witkey.campuswitkey.views;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -34,6 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        SharedPreferences preferences = getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit= preferences.edit();
+        edit.putBoolean("user_is_login",false);
+        edit.apply();
         fragmentManager = getSupportFragmentManager();
         setTabSelection(0);
         find_tasks_tv.setOnClickListener(this);
@@ -116,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 personal_tv.setTextColor(getResources().getColor(R.color.holo_bule_dark));
                 if ( personalFragment== null) {
 
-                    personalFragment = PersonalFragment.newInstance(null,null);
+                    personalFragment = PersonalFragment.newInstance();
                     transaction.add(R.id.content, personalFragment);
                 } else {
 

@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.IL
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-
+                finish();
                 break;
             default:
         }
@@ -112,15 +112,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.IL
 
     }
 
-
-
     @Override
-    public void startActivityTo() {
-        Intent intent = new Intent(this, UserInfoActivity.class);
-        startActivity(intent);
-
-
+    public void startActivityTo(Intent intent) {
+        setResult(RESULT_OK, intent);
+        finish();
     }
+
+
 
 
     @Override

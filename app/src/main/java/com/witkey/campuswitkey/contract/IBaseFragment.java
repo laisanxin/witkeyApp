@@ -5,6 +5,5 @@ package com.witkey.campuswitkey.contract;
  */
 
 public interface IBaseFragment<T> {
-    // 设置逻辑
-    void setPresenter(T mIFragmentPresenter);
+    public T initPresenter();
 }

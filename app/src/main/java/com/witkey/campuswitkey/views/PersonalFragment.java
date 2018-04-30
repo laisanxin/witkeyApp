@@ -2,19 +2,27 @@ package com.witkey.campuswitkey.views;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.witkey.campuswitkey.R;
 import com.witkey.campuswitkey.adapter.ListAdapter;
 import com.witkey.campuswitkey.adapter.ListItem;
+import com.witkey.campuswitkey.contract.PersonalContract;
+import com.witkey.campuswitkey.presenter.PersonalPresenter;
+import com.witkey.campuswitkey.utils.Url;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,54 +30,53 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static android.R.id.edit;
+import static android.app.Activity.RESULT_OK;
+
 /**
  * @version 1.0
  * @description
  * @authon lsx
  * create at 2018/4/30 12:09
  */
-public class PersonalFragment extends Fragment {
-
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    private String mParam1;
-    private String mParam2;
-
-    private ListView list_view;
+public class PersonalFragment extends Fragment implements PersonalContract.IPersonalFragment,View.OnClickListener {
+    private PersonalContract.IPersonalPresenter presenter;
+    @BindView(R.id.pn_list_view) ListView list_view;
+    @BindView(R.id.system_settings_tv) TextView system_settings_tv;
+    @BindView(R.id.user_head_view) ImageView user_head_view;
+    @BindView(R.id.user_name_tv) TextView user_name_tv;
+    @BindView(R.id.tasks_posted_tv) TextView tasks_posted_tv;
+    @BindView(R.id.tasks_accepted_tv) TextView tasks_accepted_tv;
+    private Context mContext;
     private ArrayList<ListItem> list = new ArrayList<>();
-    private TextView system_settings_tv;
     public PersonalFragment() {
-
     }
-    public static PersonalFragment newInstance(String param1, String param2) {
+    public static PersonalFragment newInstance() {
         PersonalFragment fragment = new PersonalFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        presenter = initPresenter();
     }
+
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_personal, container, false);
-        system_settings_tv  = (TextView) view.findViewById(R.id.system_settings_tv);
-
-        list_view  = (ListView) view.findViewById(R.id.pn_list_view);
+        ButterKnife.bind(this, view);
+        system_settings_tv.setOnClickListener(this);
+        user_head_view.setOnClickListener(this);
+        user_name_tv.setOnClickListener(this);
+        tasks_posted_tv.setOnClickListener(this);
+        tasks_accepted_tv.setOnClickListener(this);
+        mContext = view.getContext();
         ListItem item = new ListItem("我的消息",R.drawable.ic_textsms,R.drawable.ic_chevron_right);
+        item.setItemWarning("");
         list.add(item);
         item = new ListItem("充值W币",R.drawable.ic_chozhi,R.drawable.ic_chevron_right);
-        item.setItemWarning("0.0");
+        item.setItemWarning("0");
         list.add(item);
         item = new ListItem("交易记录",R.drawable.ic_jilu,R.drawable.ic_chevron_right);
         list.add(item);
@@ -111,10 +118,66 @@ public class PersonalFragment extends Fragment {
 
         return view;
     }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.system_settings_tv:
+                break;
+            case R.id.user_head_view:
+                SharedPreferences preferences = mContext.getSharedPreferences("user",Context.MODE_PRIVATE);
+                if(preferences.getBoolean("user_is_login",false)){
+                }else {
+                    Intent intent = new Intent(mContext,LoginActivity.class);
+                    startActivityForResult(intent,0);
+                }
+                break;
+            case R.id.user_name_tv:
+                preferences = mContext.getSharedPreferences("user",Context.MODE_PRIVATE);
+                if(preferences.getBoolean("user_is_login",false)){
+                }else {
+                    Intent intent = new Intent(mContext,LoginActivity.class);
+                    startActivityForResult(intent,0);
+                }
+                break;
+            case R.id.tasks_posted_tv:
+                break;
+            case R.id.tasks_accepted_tv:
+                break;
+            default:
+                break;
+        }
+    }
 
-    public void onButtonPressed(Uri uri) {
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK){
+            switch (requestCode){
+                case 0:
+                    Log.i("user_name",data.getStringExtra("user_name"));
+                    user_name_tv.setText(data.getStringExtra("user_name"));
+                    Glide.with(mContext)
+                            .load(Url.Base_URL_HEAD+"?path="+data.getStringExtra("user_head"))
+                            .error(R.mipmap.ic_launcher)
+                            .into(user_head_view);
+                    View view_msg = list_view.getChildAt(0);
+                    TextView msg =(TextView)view_msg.findViewById(R.id.item_warning_tv);
+                    msg.setText(data.getStringExtra("msgs"));
+                    View view_wb = list_view.getChildAt(1);
+                    TextView wb =(TextView)view_wb.findViewById(R.id.item_warning_tv);
+                    wb.setText(data.getIntExtra("user_wb",0)+"");
+                    SharedPreferences preferences = mContext.getSharedPreferences("user",Context.MODE_PRIVATE);
+                    SharedPreferences.Editor edit= preferences.edit();
+                    edit.putBoolean("user_is_login",true);
+                    edit.apply();
+                    break;
+                default:
+                    break;
+
+            }
 
 
+        }
     }
 
     @Override
@@ -129,18 +192,21 @@ public class PersonalFragment extends Fragment {
 
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.attach(this);
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.dettach();
+    }
+    @Override
+    public PersonalContract.IPersonalPresenter initPresenter() {
+        return new PersonalPresenter();
+    }
+
+
 }

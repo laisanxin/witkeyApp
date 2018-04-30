@@ -1,6 +1,7 @@
 package com.witkey.campuswitkey.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
@@ -10,6 +11,9 @@ import com.witkey.campuswitkey.model.UserModel;
 import com.witkey.campuswitkey.model.LoadTasksCallBack;
 import com.witkey.campuswitkey.model.entity.User;
 import com.witkey.campuswitkey.utils.MyApplication;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by 12554 on 2018/3/28.
@@ -40,12 +44,19 @@ public class LoginActivityPresenter implements LoginContract.ILoginActivityPrese
                     break;
                 case 200:
                     //登录成功 服务器返回该用户的id 将用户Id存到本地
+                    User user = result.getData();
+                    Intent intent = new Intent();
                     SharedPreferences sha = MyApplication.getContext().getSharedPreferences("user", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sha.edit();
-                    editor.putInt("user_id", result.getData().getUser_id());
+                    editor.putInt("user_id", user.getUser_id());
                     editor.apply();
+                    Log.i("user_name",  user.getUser_name());
+                    intent.putExtra("user_name", user.getUser_name());
+                    intent.putExtra("user_head", user.getUser_head());
+                    intent.putExtra("msgs",0);
+                    intent.putExtra("user_wb",user.getUser_wb());
                     //通知Activity进行界面跳转
-                    mILoginActivity.startActivityTo();
+                    mILoginActivity.startActivityTo(intent);
 
                     break;
                 default:
