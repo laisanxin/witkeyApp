@@ -2,11 +2,15 @@ package com.witkey.campuswitkey.model;
 
 import com.witkey.campuswitkey.model.entity.User;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -21,6 +25,10 @@ public interface ApiService {
 
     @POST("user")
     Call<HttpResult<User>> updateUser(@Body User user);
+
+    @Multipart
+    @POST("user/head")
+    Call<HttpResult<User>> updateUserAndHead(@Part MultipartBody.Part file,@Part("user") String userJson);
 
     //@path对应请求路径占位符{}里面的内容， 通过@path可动态配置请求路径
     @GET("user/{id}")

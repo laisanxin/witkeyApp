@@ -3,7 +3,7 @@
     package="com.witkey.campuswitkey">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:name=".utils.MyApplication"
         android:allowBackup="true"
@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".views.LoginActivity"
-            android:label=""></activity>
+            android:label="" />
         <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,18 @@
         <activity android:name=".views.UserInfoActivity" />
         <activity android:name=".views.RegisterActivity" />
         <activity android:name=".views.ResetActivity" />
-        <activity android:name=".views.ShowMsgActivity"></activity>
+        <activity android:name=".views.ShowMsgActivity" />
+        <activity android:name=".views.UserInfoEditActivity"></activity>
+        <provider
+            android:authorities="com.witkey.campuswitkey.fileprovider"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+
+        </provider>
     </application>
 
 </manifest>

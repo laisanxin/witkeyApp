@@ -23,6 +23,11 @@ public class ListItem {
         this.itemViewLeftId = itemViewLeftId;
         this.itemViewRightId = itemViewRightId;
     }
+    public ListItem(String itemContent,String itemWarning, int itemViewRightId){
+        this.itemContent = itemContent;
+        this.itemWarning = itemWarning;
+        this.itemViewRightId = itemViewRightId;
+    }
 
     public String getItemContent() {
         return itemContent;

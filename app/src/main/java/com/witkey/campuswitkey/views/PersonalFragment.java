@@ -49,6 +49,7 @@ public class PersonalFragment extends Fragment implements PersonalContract.IPers
     @BindView(R.id.tasks_accepted_tv) TextView tasks_accepted_tv;
     private Context mContext;
     private ArrayList<ListItem> list = new ArrayList<>();
+    private SharedPreferences preferences;
     public PersonalFragment() {
     }
     public static PersonalFragment newInstance() {
@@ -96,7 +97,7 @@ public class PersonalFragment extends Fragment implements PersonalContract.IPers
                         startActivity(intent);
                         break;
                     case 1:
-                       intent = new Intent(view.getContext(),ShowMsgActivity.class);
+                        intent = new Intent(view.getContext(),ShowMsgActivity.class);
                         intent.putExtra("test","1");
                         startActivity(intent);
                         break;
@@ -124,8 +125,10 @@ public class PersonalFragment extends Fragment implements PersonalContract.IPers
             case R.id.system_settings_tv:
                 break;
             case R.id.user_head_view:
-                SharedPreferences preferences = mContext.getSharedPreferences("user",Context.MODE_PRIVATE);
+                preferences = mContext.getSharedPreferences("user",Context.MODE_PRIVATE);
                 if(preferences.getBoolean("user_is_login",false)){
+                    Intent intent = new Intent(mContext, UserInfoActivity.class);
+                    startActivityForResult(intent,1);
                 }else {
                     Intent intent = new Intent(mContext,LoginActivity.class);
                     startActivityForResult(intent,0);
@@ -134,6 +137,8 @@ public class PersonalFragment extends Fragment implements PersonalContract.IPers
             case R.id.user_name_tv:
                 preferences = mContext.getSharedPreferences("user",Context.MODE_PRIVATE);
                 if(preferences.getBoolean("user_is_login",false)){
+                    Intent intent = new Intent(mContext, UserInfoActivity.class);
+                    startActivityForResult(intent,1);
                 }else {
                     Intent intent = new Intent(mContext,LoginActivity.class);
                     startActivityForResult(intent,0);
@@ -171,6 +176,14 @@ public class PersonalFragment extends Fragment implements PersonalContract.IPers
                     edit.putBoolean("user_is_login",true);
                     edit.apply();
                     break;
+                case 1:
+                    user_name_tv.setText(data.getStringExtra("user_name"));
+                    Glide.with(mContext)
+                            .load(data.getStringExtra("head"))
+                            .error(R.mipmap.ic_launcher)
+                            .into(user_head_view);
+                    break;
+
                 default:
                     break;
 

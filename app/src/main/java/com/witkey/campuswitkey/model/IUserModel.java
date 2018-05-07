@@ -13,4 +13,5 @@ public interface IUserModel {
     void addUser(User user, final LoadTasksCallBack callBack);
     void getUserInfo(int id, final LoadTasksCallBack callBack);
     void updateUser(User user, final LoadTasksCallBack callBack);
+    void updateUserAndHead(User user, final LoadTasksCallBack callBack);
 }

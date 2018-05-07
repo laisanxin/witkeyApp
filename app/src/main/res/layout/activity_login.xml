@@ -51,6 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:hint="请输入您的邮箱"
+                android:text="1255490926@qq.com"
                 android:inputType="textEmailAddress" />
 
             <EditText
@@ -58,6 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入您的密码"
+                android:text="123456"
                 android:inputType="textPassword" />
 
             <Button

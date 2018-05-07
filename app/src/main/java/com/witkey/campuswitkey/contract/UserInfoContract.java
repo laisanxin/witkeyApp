@@ -13,6 +13,7 @@ public class UserInfoContract {
         void dismissLoading();//取消加载框展示
         void showUserInfo(User user);
         void showUpdateResult(String result);
+        void backActivity();
 
     }
     public interface IUserInfoActivityPresenter extends IBasePresenter<IUserInfoActivity> {

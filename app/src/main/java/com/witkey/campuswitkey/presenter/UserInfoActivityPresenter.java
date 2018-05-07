@@ -29,29 +29,36 @@ public class UserInfoActivityPresenter implements UserInfoContract.IUserInfoActi
 
     @Override
     public void onSuccess(HttpResult<User> result) {
-        switch (result.getCode()) {
-            case 199:
-                //获取用户信息失败
-                mIUserInfoActivity.showUserInfo(null);
-                break;
-            case 200:
-                //获取用户信息 将获取的数据通过调用Activity的回调方法传递给Activity进行显示
-                mIUserInfoActivity.showUserInfo(result.getData());
+        if(result!= null){
+            switch (result.getCode()) {
+                case 199:
+                    //获取用户信息失败
+                    mIUserInfoActivity.showUserInfo(null);
+                    break;
+                case 200:
+                    //获取用户信息 将获取的数据通过调用Activity的回调方法传递给Activity进行显示
+                    mIUserInfoActivity.showUserInfo(result.getData());
 
-                break;
-            case 201:
-                //获取更新用户信息 且更新失败
-                mIUserInfoActivity.showUpdateResult("更新失败！");
-                break;
-            case 202:
-                //获取更新用户信息 且更新成功
-                mIUserInfoActivity.showUpdateResult("更新成功！");
-                break;
-            default:
-                break;
+                    break;
+                case 201:
+                    //获取更新用户信息 且更新失败
+                    mIUserInfoActivity.showUpdateResult("更新失败！");
+                    break;
+                case 202:
+                    //获取更新用户信息 且更新成功
+                    mIUserInfoActivity.showUpdateResult("更新成功！");
+                    mIUserInfoActivity.backActivity();
+                    break;
+                default:
+                    break;
 
+            }
 
+        }else {
+            //获取更新用户信息 且更新失败
+            mIUserInfoActivity.showUpdateResult("服务器异常！");
         }
+
 
     }
 
@@ -87,7 +94,7 @@ public class UserInfoActivityPresenter implements UserInfoContract.IUserInfoActi
         SharedPreferences sha = MyApplication.getContext().getSharedPreferences("user", 0);
         int id = sha.getInt("user_id", 0);
         user.setUser_id(id);
-        userModel.updateUser(user, this);
+        userModel.updateUserAndHead(user, this);
 
 
     }
