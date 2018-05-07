@@ -3,9 +3,7 @@ package com.witkey.campuswitkey.views;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,12 +23,10 @@ import com.witkey.campuswitkey.presenter.PersonalPresenter;
 import com.witkey.campuswitkey.utils.Url;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static android.R.id.edit;
 import static android.app.Activity.RESULT_OK;
 
 /**
@@ -73,10 +69,7 @@ public class PersonalFragment extends Fragment implements PersonalContract.IPers
         tasks_posted_tv.setOnClickListener(this);
         tasks_accepted_tv.setOnClickListener(this);
         mContext = view.getContext();
-        ListItem item = new ListItem("我的消息",R.drawable.ic_textsms,R.drawable.ic_chevron_right);
-        item.setItemWarning("");
-        list.add(item);
-        item = new ListItem("充值W币",R.drawable.ic_chozhi,R.drawable.ic_chevron_right);
+        ListItem item = new ListItem("充值W币",R.drawable.ic_chozhi,R.drawable.ic_chevron_right);
         item.setItemWarning("0");
         list.add(item);
         item = new ListItem("交易记录",R.drawable.ic_jilu,R.drawable.ic_chevron_right);
@@ -92,14 +85,10 @@ public class PersonalFragment extends Fragment implements PersonalContract.IPers
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch(position){
                     case 0:
-                        Intent intent = new Intent(view.getContext(),ShowMsgActivity.class);
-                        intent.putExtra("test","0");
-                        startActivity(intent);
+
                         break;
                     case 1:
-                        intent = new Intent(view.getContext(),ShowMsgActivity.class);
-                        intent.putExtra("test","1");
-                        startActivity(intent);
+
                         break;
                     default:
                         break;

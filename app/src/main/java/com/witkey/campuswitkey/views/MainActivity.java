@@ -20,12 +20,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @BindView(R.id.find_tasks_tv) TextView find_tasks_tv;
     @BindView(R.id.find_witkeys_tv) TextView find_witkeys_tv;
-    @BindView(R.id.post_tasks_tv) TextView post_tasks_tv;
+    @BindView(R.id.message_tv) TextView message_tv;
     @BindView(R.id.personal_tv) TextView personal_tv;
+    @BindView(R.id.post_task_tv) TextView post_task_tv;
 
     private FindTasksFragment findTasksFragment;
     private FindWitkeysFragment findWitkeysFragment;
-    private PostTasksFragment postTasksFragment;
+    private MessageFragment messageFragment;
     private PersonalFragment personalFragment;
 
     private FragmentManager fragmentManager;
@@ -44,8 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setTabSelection(0);
         find_tasks_tv.setOnClickListener(this);
         find_witkeys_tv.setOnClickListener(this);
-        post_tasks_tv.setOnClickListener(this);
+        message_tv.setOnClickListener(this);
         personal_tv.setOnClickListener(this);
+        post_task_tv.setOnClickListener(this);
 
     }
 
@@ -59,11 +61,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.find_witkeys_tv:
                 setTabSelection(1);
                 break;
-            case R.id.post_tasks_tv:
+            case R.id.message_tv:
                 setTabSelection(2);
                 break;
             case R.id.personal_tv:
                 setTabSelection(3);
+                break;
+            case R.id.post_task_tv:
                 break;
             default:
                 break;
@@ -104,16 +108,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case 2:
-                post_tasks_tv.setCompoundDrawablesWithIntrinsicBounds(null,
-                        getDrawable(R.drawable.ic_post_tasks_selected), null, null);
-                post_tasks_tv.setTextColor(getResources().getColor(R.color.holo_bule_dark));
-                if ( postTasksFragment== null) {
+                message_tv.setCompoundDrawablesWithIntrinsicBounds(null,
+                        getDrawable(R.drawable.ic_msg_selected), null, null);
+                message_tv.setTextColor(getResources().getColor(R.color.holo_bule_dark));
+                if ( messageFragment== null) {
 
-                    postTasksFragment = PostTasksFragment.newInstance(null,null);
-                    transaction.add(R.id.content, postTasksFragment);
+                    messageFragment = MessageFragment.newInstance();
+                    transaction.add(R.id.content, messageFragment);
                 } else {
 
-                    transaction.show(postTasksFragment);
+                    transaction.show(messageFragment);
                 }
                 break;
             case 3:
@@ -145,9 +149,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         find_witkeys_tv.setCompoundDrawablesWithIntrinsicBounds(null,
                 getDrawable(R.drawable.ic_find_witkeys_unselected), null, null);
 
-        post_tasks_tv.setTextColor(getResources().getColor(R.color.darker_gray));
-        post_tasks_tv.setCompoundDrawablesWithIntrinsicBounds(null,
-                getDrawable(R.drawable.ic_post_tasks_unselected),null, null);
+        message_tv.setTextColor(getResources().getColor(R.color.darker_gray));
+        message_tv.setCompoundDrawablesWithIntrinsicBounds(null,
+                getDrawable(R.drawable.ic_msg_unselected),null, null);
 
         personal_tv.setTextColor(getResources().getColor(R.color.darker_gray));
         personal_tv.setCompoundDrawablesWithIntrinsicBounds(null,
@@ -164,8 +168,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             transaction.hide(findWitkeysFragment);
 
         }
-        if(postTasksFragment != null){
-            transaction.hide(postTasksFragment);
+        if(messageFragment != null){
+            transaction.hide(messageFragment);
 
         }
         if(personalFragment != null){

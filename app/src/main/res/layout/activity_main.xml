@@ -13,6 +13,10 @@
         android:layout_weight="1">
 
     </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/system_grey"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -41,14 +45,25 @@
             android:textColor="@color/darker_gray" />
 
         <TextView
-            android:id="@+id/post_tasks_tv"
+            android:id="@+id/post_task_tv"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:drawableTop="@drawable/ic_add"
+            android:paddingTop="0dp"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:text="发布问题"
+            android:textColor="@color/darker_gray" />
+
+        <TextView
+            android:id="@+id/message_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:drawableTop="@drawable/ic_post_tasks_unselected"
+            android:drawableTop="@drawable/ic_msg_unselected"
             android:gravity="center"
             android:paddingTop="5dp"
-            android:text="发布问题"
+            android:text="消息"
             android:textColor="@color/darker_gray" />
 
         <TextView
